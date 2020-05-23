@@ -1,0 +1,39 @@
+:host {
+  display: grid;
+  place-items: center;
+  height: 100%;
+
+  .container {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    max-width: 400px;
+    border: solid silver;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+    mat-icon {
+      font-size: 80px;
+      text-align: center;
+      color: #da0de8;
+      width: 100px;
+      height: 100px;
+    }
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    .button-row {
+      width: 100%;
+      display: grid;
+      place-items: center;
+      margin-top: 40px;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}
