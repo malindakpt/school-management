@@ -11,6 +11,7 @@ import { ResultsChartComponent } from './components/presentationComponents/resul
 import { AuthGuard } from './services/authGuard';
 import { HomeComponent } from './components/containerComponents/home/home.component';
 import { BaseComponent } from './components/presentationComponents/base/base.component';
+import { MaterialModule } from './modules/app.material.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,12 @@ import { BaseComponent } from './components/presentationComponents/base/base.com
     HomeComponent,
     BaseComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+  ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
