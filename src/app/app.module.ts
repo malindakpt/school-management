@@ -12,6 +12,8 @@ import { AuthGuard } from './services/authGuard';
 import { HomeComponent } from './components/containerComponents/home/home.component';
 import { BaseComponent } from './components/presentationComponents/base/base.component';
 import { MaterialModule } from './modules/app.material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,9 @@ import { MaterialModule } from './modules/app.material.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    HttpClientModule,
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, DataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
