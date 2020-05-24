@@ -14,6 +14,7 @@ import { BaseComponent } from './components/presentationComponents/base/base.com
 import { MaterialModule } from './modules/app.material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './services/data.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { DataService } from './services/data.service';
     BaseComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
