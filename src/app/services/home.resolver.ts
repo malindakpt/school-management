@@ -11,10 +11,7 @@ import { DataStore } from './dataStore.service';
 export class HomeResolver implements Resolve<any> {
   constructor(private dataService: DataService, private dataStore: DataStore) {}
 
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Promise<any> | any {
+  resolve(): Promise<any> | any {
     return Promise.all([
       this.dataService.getActivities(),
       this.dataService.getClasses(),
