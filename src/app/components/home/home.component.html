@@ -16,7 +16,9 @@
   >
     <ng-container matColumnDef="student">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>STUDENT</th>
-      <td mat-cell *matCellDef="let element">{{ element.student }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.student }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="week">
