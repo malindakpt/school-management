@@ -12,11 +12,11 @@ import { DataStore } from 'src/app/services/data-store.service';
   styleUrls: ['./data-table.component.scss'],
 })
 export class DataTableComponent implements OnInit {
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   public activities: Activity[];
   public classes: Class[];
-
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
   public dataSource;
+  public filterCriteriaText = '';
   public displayedColumns = [
     'student',
     'week',
@@ -26,7 +26,6 @@ export class DataTableComponent implements OnInit {
     'value',
     'time',
   ];
-  public filterCriteriaText = '';
 
   constructor(dataStore: DataStore) {
     this.activities = dataStore.getActivities();
@@ -53,7 +52,7 @@ export class DataTableComponent implements OnInit {
     this.dataSource.filter = filter;
   }
 
-  public assesmentCategory(marks: number): string {
+  public getAssesmentCategory(marks: number): string {
     if (marks >= 90) {
       return 'excellent';
     } else if (marks >= 80) {

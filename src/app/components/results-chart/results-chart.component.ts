@@ -10,7 +10,7 @@ export class ResultsChartComponent {
   public populationArr = ['0%', '0%', '0%', '0%'];
   public legendArr = ['Weak', 'Ok', 'Good', 'Excellent'];
 
-  constructor(private dataStore: DataStore) {
+  constructor(dataStore: DataStore) {
     const activities = dataStore.getActivities();
 
     if (activities?.length > 0) {

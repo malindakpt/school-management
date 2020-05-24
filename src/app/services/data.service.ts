@@ -3,11 +3,10 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ClassesResponse } from '../interfaces/classes-response';
 import { ActivityResponse } from '../interfaces/activity-response';
-import { DataStore } from './data-store.service';
 
 @Injectable()
 export class DataService {
-  constructor(private http: HttpClient, private dataStore: DataStore) {}
+  constructor(private http: HttpClient) {}
 
   public getClasses(): Promise<ClassesResponse> {
     return new Promise((resolve, reject) => {
