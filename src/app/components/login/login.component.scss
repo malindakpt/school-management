@@ -9,9 +9,13 @@
     place-items: center;
     padding: 20px;
     max-width: 400px;
-    border: solid silver;
     box-sizing: border-box;
     border-radius: 10px;
+    border: solid silver;
+
+    @media only screen and (max-width: 600px) {
+      border: none;
+    }
 
     .login-toggle {
       width: 100%;

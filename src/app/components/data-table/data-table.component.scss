@@ -1,24 +1,29 @@
-table {
+.container {
   width: 100%;
+  overflow: auto;
 
-  .excellent {
-    color: var(--excellent);
+  table {
+    width: 100%;
+
+    .excellent {
+      color: var(--excellent);
+    }
+
+    .good {
+      color: var(--good);
+    }
+
+    .ok {
+      color: var(--ok);
+    }
+
+    .weak {
+      color: var(--weak);
+    }
   }
 
-  .good {
-    color: var(--good);
+  .no-data {
+    text-align: center;
+    padding: 40px;
   }
-
-  .ok {
-    color: var(--ok);
-  }
-
-  .weak {
-    color: var(--weak);
-  }
-}
-
-.no-data {
-  text-align: center;
-  padding: 40px;
 }
