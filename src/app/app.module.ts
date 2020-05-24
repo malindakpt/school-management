@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
-import { DataTableComponent } from './components/data-table/data-table.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { ResultsChartComponent } from './components/results-chart/results-chart.component';
 import { AuthService } from './services/auth.service';
@@ -20,7 +19,6 @@ import { DataStore } from './services/data-store.service';
 @NgModule({
   declarations: [
     AppComponent,
-    DataTableComponent,
     FilterComponent,
     ResultsChartComponent,
     HeaderComponent,
