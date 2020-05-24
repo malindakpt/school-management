@@ -5,17 +5,35 @@
   <mat-icon aria-hidden="false">person</mat-icon>
   <mat-form-field>
     <mat-label>User name</mat-label>
-    <input matInput />
+    <input matInput [(ngModel)]="username" name="userName" />
   </mat-form-field>
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input matInput />
+    <input matInput [(ngModel)]="password" type="password" name="password" />
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field *ngIf="!isSignIn">
     <mat-label>Confirm Password</mat-label>
-    <input matInput />
+    <input
+      matInput
+      [(ngModel)]="confirmPassword"
+      type="password"
+      name="confirmPassword"
+    />
   </mat-form-field>
+  <div class="error" *ngIf="errorMsg">
+    {{ errorMsg }}
+  </div>
   <div class="button-row">
-    <button mat-raised-button color="primary" (click)="login()">Login</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="isDisabled"
+      (click)="login()"
+    >
+      {{ isSignIn ? "Login" : "Create User" }}
+    </button>
+  </div>
+  <div class="login-toggle" (click)="toggleLogin()">
+    <u>{{ isSignIn ? "Create an account" : "Log into your account" }}</u>
   </div>
 </form>

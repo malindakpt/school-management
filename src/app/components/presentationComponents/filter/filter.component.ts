@@ -1,20 +1,13 @@
-import {
-  EventEmitter,
-  Component,
-  Input,
-  OnChanges,
-  Output,
-} from '@angular/core';
-import { Class } from 'src/app/interfaces/class';
+import { EventEmitter, Component, Output } from '@angular/core';
 import { Filter } from 'src/app/interfaces/filter';
+import { DataStore } from 'src/app/services/dataStore.service';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
 })
-export class FilterComponent implements OnChanges {
-  @Input() classes: Class[];
+export class FilterComponent {
   @Output() filterChange = new EventEmitter();
 
   public viewClasses: string[];
@@ -27,11 +20,11 @@ export class FilterComponent implements OnChanges {
 
   private classMap = {};
 
-  ngOnChanges(): void {
+  constructor(dataStore: DataStore) {
     const viewClasses = [undefined];
     const classMap = {};
 
-    this.classes?.forEach((cls) => {
+    dataStore.getClasses().forEach((cls) => {
       viewClasses.push(cls.name);
       classMap[cls.name] = [undefined, ...cls.students];
     });
@@ -42,6 +35,7 @@ export class FilterComponent implements OnChanges {
 
   public handleClassChange(e: any): void {
     this.selectedClass = e.value;
+    this.selectedStudent = undefined;
     this.viewStudents = this.classMap[e.value];
     this.filtersChanged();
   }

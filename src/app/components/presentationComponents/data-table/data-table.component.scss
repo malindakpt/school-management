@@ -2,18 +2,27 @@ table {
   width: 100%;
 
   .excellent {
-    color: #04cf37;
+    color: var(--excellent);
   }
 
   .good {
-    color: #cf5f04;
+    color: var(--good);
   }
 
   .ok {
-    color: #da4545;
+    color: var(--ok);
   }
 
   .weak {
-    color: #646464;
+    color: var(--weak);
   }
+}
+
+.noData {
+  text-align: center;
+  padding: 40px;
+}
+
+mat-progress-bar {
+  margin-top: 50%;
 }

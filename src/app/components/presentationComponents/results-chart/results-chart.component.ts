@@ -1,22 +1,23 @@
-import { Component, Input, OnChanges } from '@angular/core';
-import { Activity } from 'src/app/interfaces/Activity';
+import { Component } from '@angular/core';
+import { DataStore } from 'src/app/services/dataStore.service';
 
 @Component({
   selector: 'app-results-chart',
   templateUrl: './results-chart.component.html',
   styleUrls: ['./results-chart.component.scss'],
 })
-export class ResultsChartComponent implements OnChanges {
-  @Input() activities: Activity[];
+export class ResultsChartComponent {
   public populationArr = ['0%', '0%', '0%', '0%'];
   public legendArr = ['Weak', 'Ok', 'Good', 'Excellent'];
 
-  ngOnChanges(): void {
-    if (this.activities?.length > 0) {
-      const population = [0, 0, 0, 0];
-      const total = this.activities.length;
+  constructor(private dataStore: DataStore) {
+    const activities = dataStore.getActivities();
 
-      for (const activity of this.activities) {
+    if (activities?.length > 0) {
+      const population = [0, 0, 0, 0];
+      const total = activities.length;
+
+      for (const activity of activities) {
         if (activity.value >= 90) {
           population[0]++;
         } else if (activity.value >= 80) {

@@ -1,21 +1,21 @@
-import { Component, ViewChild, Input, OnChanges } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Activity } from 'src/app/interfaces/Activity';
 import { Class } from 'src/app/interfaces/class';
-import { DataSource } from '@angular/cdk/collections/data-source';
 import { Filter } from 'src/app/interfaces/filter';
+import { DataStore } from 'src/app/services/dataStore.service';
 
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.scss'],
 })
-export class DataTableComponent implements OnChanges {
-  @Input() activities: Activity[];
-  @Input() classes: Class[];
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+export class DataTableComponent implements OnInit {
+  public activities: Activity[];
+  public classes: Class[];
 
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   public dataSource;
   public displayedColumns = [
     'student',
@@ -26,24 +26,43 @@ export class DataTableComponent implements OnChanges {
     'value',
     'time',
   ];
+  public filterCriteriaText = '';
 
-  public handleFilterChange(e): void {
-    this.dataSource.filter = e;
+  constructor(dataStore: DataStore) {
+    this.activities = dataStore.getActivities();
+    this.classes = dataStore.getClasses();
   }
 
-  public assesmentCategory(marks: number): object {
-    return {
-      excellent: marks >= 90,
-      good: 90 > marks && marks >= 80,
-      ok: 80 > marks && marks >= 60,
-      weak: 60 > marks,
-    };
-  }
-
-  ngOnChanges(): void {
+  ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.activities);
     this.dataSource.sort = this.sort;
     this.setFilterPredicate();
+  }
+
+  public handleFilterChange(filter: Filter): void {
+    // Generate the no data message
+    const text = 'No content has been completed';
+    const student = filter.student ? ` by ${filter.student}` : '';
+    const from = filter.fromDate
+      ? ` from ${filter.fromDate.toDateString()}`
+      : '';
+    const to = filter.toDate ? ` to ${filter.toDate.toDateString()}` : '';
+    this.filterCriteriaText = `${text} ${student}${from}${to}`;
+
+    // Set the filter
+    this.dataSource.filter = filter;
+  }
+
+  public assesmentCategory(marks: number): string {
+    if (marks >= 90) {
+      return 'excellent';
+    } else if (marks >= 80) {
+      return 'good';
+    } else if (marks >= 60) {
+      return 'ok';
+    } else {
+      return 'weak';
+    }
   }
 
   private setFilterPredicate(): void {

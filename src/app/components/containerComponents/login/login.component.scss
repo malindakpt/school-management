@@ -13,6 +13,14 @@
     box-sizing: border-box;
     border-radius: 10px;
 
+    .login-toggle {
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+      color: blue;
+      margin-top: 10px;
+    }
+
     mat-icon {
       font-size: 80px;
       text-align: center;
@@ -23,6 +31,11 @@
 
     mat-form-field {
       width: 100%;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
     }
 
     .button-row {

@@ -1,10 +1,8 @@
-<div *ngIf="activities">
-  <div class="bar">
-    <div *ngFor="let pop of populationArr" [style.width]="pop"></div>
-  </div>
-  <div class="legend">
-    <div *ngFor="let leg of legendArr; let i = index">
-      <div>{{ leg }}({{ populationArr[i] }})</div>
-    </div>
+<div class="bar">
+  <div *ngFor="let pop of populationArr" [style.width]="pop"></div>
+</div>
+<div class="legend">
+  <div *ngFor="let leg of legendArr; let i = index">
+    <div>{{ leg }}({{ populationArr[i] }})</div>
   </div>
 </div>
