@@ -76,11 +76,9 @@ export class DataTableComponent implements OnInit {
         // if filter value is unavailable, then skip the validation
         if (filterVal) {
           if (filterKey === 'fromDate') {
-            propMatched =
-              this.getDate(rowData.week).getTime() > filterVal.getTime();
+            propMatched = rowData.week.getTime() > filterVal.getTime();
           } else if (filterKey === 'toDate') {
-            propMatched =
-              this.getDate(rowData.week).getTime() < filterVal.getTime();
+            propMatched = rowData.week.getTime() < filterVal.getTime();
           } else if (rowData[filterKey] instanceof Array) {
             // if row data contains an array, then find if any value of array match with filter value
             for (const ele of rowData[filterKey]) {
@@ -98,11 +96,5 @@ export class DataTableComponent implements OnInit {
       }
       return allPropsMatched;
     };
-  }
-
-  private getDate(dat: string): Date {
-    // Convert week into standard format and return as Date object
-    const arr = dat.split('/');
-    return new Date(`${arr[1]}/${arr[0]}/${arr[2]}`);
   }
 }

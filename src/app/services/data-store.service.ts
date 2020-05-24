@@ -34,7 +34,7 @@ export class DataStore {
           skill: activity.skill,
           time: activity.time,
           type: activity.type,
-          week,
+          week: this.getDate(week),
           value: activity.attempts.values[idx],
           class: studentClassMap[activity.student],
         };
@@ -50,5 +50,11 @@ export class DataStore {
 
   public getClasses(): Class[] {
     return this.classes;
+  }
+
+  private getDate(dat: string): Date {
+    // Convert week into standard format and return as Date object
+    const arr = dat.split('/');
+    return new Date(`${arr[1]}/${arr[0]}/${arr[2]}`);
   }
 }

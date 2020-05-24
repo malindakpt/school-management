@@ -4,7 +4,7 @@ export interface Activity {
   student: string;
   time: string;
   type: string;
-  week: string;
+  week: Date;
   value: number;
   class: string;
 }
