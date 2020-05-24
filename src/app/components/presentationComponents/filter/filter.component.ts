@@ -5,14 +5,9 @@ import {
   OnChanges,
   Output,
 } from '@angular/core';
-import { Class } from 'src/app/entities/class';
+import { Class } from 'src/app/interfaces/class';
+import { Filter } from 'src/app/interfaces/filter';
 
-export interface FilterObj {
-  class?: string;
-  student?: string;
-  fromDate?: Date;
-  toDate?: Date;
-}
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
@@ -34,25 +29,15 @@ export class FilterComponent implements OnChanges {
 
   ngOnChanges(): void {
     const viewClasses = [undefined];
-    this.classes?.map((cls) => {
+    const classMap = {};
+
+    this.classes?.forEach((cls) => {
       viewClasses.push(cls.name);
-
-      if (!this.classMap[cls.name]) {
-        this.classMap[cls.name] = [undefined];
-      }
-      this.classMap[cls.name].push(cls.students);
+      classMap[cls.name] = [undefined, ...cls.students];
     });
+
+    this.classMap = classMap;
     this.viewClasses = viewClasses;
-  }
-
-  public handleStartDateChange(e: any): void {
-    this.selectedStartDate = e.target.value;
-    this.filtersChanged();
-  }
-
-  public handleEndDateChange(e: any): void {
-    this.selectedEndDate = e.target.value;
-    this.filtersChanged();
   }
 
   public handleClassChange(e: any): void {
@@ -66,8 +51,18 @@ export class FilterComponent implements OnChanges {
     this.filtersChanged();
   }
 
+  public handleStartDateChange(e: any): void {
+    this.selectedStartDate = e.target.value;
+    this.filtersChanged();
+  }
+
+  public handleEndDateChange(e: any): void {
+    this.selectedEndDate = e.target.value;
+    this.filtersChanged();
+  }
+
   public filtersChanged(): void {
-    const filterObj: FilterObj = {
+    const filterObj: Filter = {
       class: this.selectedClass,
       student: this.selectedStudent,
       fromDate: this.selectedStartDate,

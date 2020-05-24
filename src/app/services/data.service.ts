@@ -1,23 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-
-interface ClassesResponse {
-  classes: [];
-}
-interface ActivityResponse {
-  data: [];
-}
+import { ClassesResponse } from '../interfaces/classesResponse';
+import { ActivityResponse } from '../interfaces/activityResponse';
 
 @Injectable()
 export class DataService {
   constructor(private http: HttpClient) {}
 
-  public getClasses() {
+  public getClasses(): Promise<ClassesResponse> {
     return new Promise((resolve, reject) => {
       this.http.get(environment.classesURL).subscribe(
         (reslut: ClassesResponse) => {
-          resolve(reslut.classes);
+          resolve(reslut);
         },
         (error) => {
           console.error(error);
@@ -27,11 +22,11 @@ export class DataService {
     });
   }
 
-  public getActivities() {
+  public getActivities(): Promise<ActivityResponse> {
     return new Promise((resolve, reject) => {
       this.http.get(environment.activitiesURL).subscribe(
         (reslut: ActivityResponse) => {
-          resolve(reslut.data);
+          resolve(reslut);
         },
         (error) => {
           console.error(error);
