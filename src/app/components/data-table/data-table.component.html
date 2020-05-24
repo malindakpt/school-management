@@ -1,6 +1,13 @@
 <app-filter (filterChange)="handleFilterChange($event)"></app-filter>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+<table
+  mat-table
+  [dataSource]="dataSource"
+  class="mat-elevation-z8"
+  matSort
+  matSortActive="student"
+  matSortDirection="asc"
+>
   <ng-container matColumnDef="student">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>STUDENT</th>
     <td mat-cell *matCellDef="let element">{{ element.student }}</td>
@@ -8,7 +15,7 @@
 
   <ng-container matColumnDef="week">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>DATE COMPLETED</th>
-    <td mat-cell *matCellDef="let element">{{ element.week }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.week | date }}</td>
   </ng-container>
 
   <ng-container matColumnDef="content">
