@@ -1,0 +1,68 @@
+:host {
+  .bar {
+    width: 80%;
+    margin: auto;
+    height: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+
+    div {
+      height: 100%;
+      float: left;
+    }
+
+    div:nth-child(1) {
+      width: 30%;
+      background-color: var(--weak);
+      border-radius: 5px 0px 0px 5px;
+    }
+    div:nth-child(2) {
+      width: 30%;
+      background-color: var(--ok);
+    }
+    div:nth-child(3) {
+      width: 20%;
+      background-color: var(--good);
+    }
+    div:nth-child(4) {
+      width: 20%;
+      background-color: var(--excellent);
+      border-radius: 0px 5px 5px 0px;
+    }
+  }
+
+  .legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    place-items: center;
+    height: 30px;
+    width: 80%;
+    margin: auto;
+    font-size: 11px;
+
+    > div:nth-child(1) {
+      background-color: var(--weak);
+    }
+    > div:nth-child(2) {
+      background-color: var(--ok);
+    }
+    > div:nth-child(3) {
+      background-color: var(--good);
+    }
+    > div:nth-child(4) {
+      background-color: var(--excellent);
+    }
+
+    > div {
+      width: 15px;
+      height: 15px;
+      background-color: red;
+      float: left;
+
+      > div {
+        margin-left: 20px;
+        line-height: 17px;
+      }
+    }
+  }
+}
