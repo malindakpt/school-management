@@ -11,11 +11,11 @@ import { ResultsChartComponent } from './components/results-chart/results-chart.
 import { AuthService } from './services/auth.service';
 import { HomeComponent } from './components/home/home.component';
 import { BaseComponent } from './components/base/base.component';
-import { MaterialModule } from './modules/app.material.module';
+import { MaterialModule } from './modules/app-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './services/data.service';
 import { FormsModule } from '@angular/forms';
-import { DataStore } from './services/dataStore.service';
+import { DataStore } from './services/data-store.service';
 
 @NgModule({
   declarations: [

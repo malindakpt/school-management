@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { ClassesResponse } from '../interfaces/classesResponse';
-import { ActivityResponse } from '../interfaces/activityResponse';
-import { DataStore } from './dataStore.service';
+import { ClassesResponse } from '../interfaces/classes-response';
+import { ActivityResponse } from '../interfaces/activity-response';
+import { DataStore } from './data-store.service';
 
 @Injectable()
 export class DataService {

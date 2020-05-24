@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { DataService } from './data.service';
-import { DataStore } from './dataStore.service';
+import { DataStore } from './data-store.service';
 
 @Injectable({ providedIn: 'root' })
 export class HomeResolver implements Resolve<any> {

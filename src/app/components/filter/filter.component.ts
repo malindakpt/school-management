@@ -1,6 +1,6 @@
 import { EventEmitter, Component, Output } from '@angular/core';
 import { Filter } from 'src/app/interfaces/filter';
-import { DataStore } from 'src/app/services/dataStore.service';
+import { DataStore } from 'src/app/services/data-store.service';
 
 @Component({
   selector: 'app-filter',

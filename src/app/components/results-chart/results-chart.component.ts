@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataStore } from 'src/app/services/dataStore.service';
+import { DataStore } from 'src/app/services/data-store.service';
 
 @Component({
   selector: 'app-results-chart',

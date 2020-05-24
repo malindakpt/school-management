@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { Activity } from 'src/app/interfaces/Activity';
 import { Class } from 'src/app/interfaces/class';
 import { Filter } from 'src/app/interfaces/filter';
-import { DataStore } from 'src/app/services/dataStore.service';
+import { DataStore } from 'src/app/services/data-store.service';
 
 @Component({
   selector: 'app-data-table',

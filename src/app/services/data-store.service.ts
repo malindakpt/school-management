@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Class } from '../interfaces/class';
 import { Activity } from '../interfaces/Activity';
-import { ActivityResponse } from '../interfaces/activityResponse';
-import { ClassesResponse } from '../interfaces/classesResponse';
+import { ActivityResponse } from '../interfaces/activity-response';
+import { ClassesResponse } from '../interfaces/classes-response';
 
 @Injectable()
 export class DataStore {
@@ -42,7 +42,6 @@ export class DataStore {
       });
     });
     this.activities = acts;
-    // console.log(this.activities, this.classes);
   }
 
   public getActivities(): Activity[] {
