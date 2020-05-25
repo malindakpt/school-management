@@ -5,11 +5,22 @@
   <mat-icon aria-hidden="false">person</mat-icon>
   <mat-form-field>
     <mat-label>User name</mat-label>
-    <input matInput [(ngModel)]="username" name="userName" />
+    <input
+      matInput
+      [(ngModel)]="username"
+      name="userName"
+      autocomplete="username"
+    />
   </mat-form-field>
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input matInput [(ngModel)]="password" type="password" name="password" />
+    <input
+      matInput
+      [(ngModel)]="password"
+      type="password"
+      name="password"
+      autocomplete="new-password"
+    />
   </mat-form-field>
   <mat-form-field *ngIf="!isSignIn">
     <mat-label>Confirm Password</mat-label>
@@ -18,6 +29,7 @@
       [(ngModel)]="confirmPassword"
       type="password"
       name="confirmPassword"
+      autocomplete="new-password"
     />
   </mat-form-field>
   <div class="error" *ngIf="errorMsg">
