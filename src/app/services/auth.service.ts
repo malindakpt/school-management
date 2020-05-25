@@ -14,6 +14,8 @@ export class AuthService implements CanActivate {
     return this.isLoggedIn;
   }
 
+  // Below methods are implemented temporary to simulate login feature
+
   public setLoginStatus(status: boolean): void {
     this.isLoggedIn = status;
     if (!this.isLoggedIn) {
