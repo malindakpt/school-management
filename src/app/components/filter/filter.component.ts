@@ -10,8 +10,8 @@ import { DataStore } from 'src/app/services/data-store.service';
 export class FilterComponent {
   @Output() filterChange = new EventEmitter();
 
-  public viewClasses: string[];
-  public viewStudents: string[];
+  public viewClasses: Array<string | undefined>;
+  public viewStudents: Array<string | undefined>;
 
   public selectedClass;
   public selectedStudent;
