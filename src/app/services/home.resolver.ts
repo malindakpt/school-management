@@ -16,6 +16,7 @@ export class HomeResolver implements Resolve<any> {
         this.dataStore.setData(result[0], result[1]);
       })
       .catch((err) => {
+        // Not expected to come here
         this.dataStore.setData({ data: [] }, { classes: [] });
       });
   }
