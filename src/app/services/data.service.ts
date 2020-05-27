@@ -15,8 +15,9 @@ export class DataService {
           resolve(result);
         },
         (error) => {
+          // TODO display a proper error message
           console.error(error);
-          reject(error);
+          resolve({ classes: [] });
         }
       );
     });
@@ -29,8 +30,9 @@ export class DataService {
           resolve(result);
         },
         (error) => {
+          // TODO display a proper error message
           console.error(error);
-          reject(error);
+          resolve({ data: [] });
         }
       );
     });

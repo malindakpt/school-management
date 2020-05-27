@@ -11,8 +11,13 @@ export class HomeResolver implements Resolve<any> {
     return Promise.all([
       this.dataService.getActivities(),
       this.dataService.getClasses(),
-    ]).then((result) => {
-      this.dataStore.setData(result[0], result[1]);
-    });
+    ])
+      .then((result) => {
+        this.dataStore.setData(result[0], result[1]);
+      })
+      .catch((err) => {
+        // Not expected to come here
+        this.dataStore.setData({ data: [] }, { classes: [] });
+      });
   }
 }
