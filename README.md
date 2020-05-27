@@ -8,7 +8,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Notes
 
-Unit Tests are not added only for</br>
+Unit Tests are not added for :</br>
 data.service</br>
 filter.component</br></br>
 With the provided data structure, some students are assigned to more than 1 class. Therefore relavant class of such test result cannot be determined.</br> </br>
