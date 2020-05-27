@@ -1,79 +1,99 @@
 import { DataService } from './data.service';
 import { ClassesResponse } from '../interfaces/classes-response';
-
 import { ActivityResponse } from '../interfaces/activity-response';
-import { HttpErrorResponse } from '@angular/common/http';
-import { error } from 'protractor';
 import { of } from 'rxjs/internal/observable/of';
 
 let httpClientSpy: { get: jasmine.Spy };
 let dataService: DataService;
 
-beforeEach(() => {
-  // TODO: spy on other methods too
-  httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-  dataService = new DataService(<any>httpClientSpy);
-});
+describe('DataService', () => {
+  beforeEach(() => {
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    dataService = new DataService(httpClientSpy as any);
+  });
 
-it('should return expected classes (HttpClient called once)', () => {
-  const expectedResponse: ClassesResponse = {
-    classes: [
-      { name: 'class_1', students: ['A', 'B'] },
-      { name: 'class_2', students: ['A', 'B'] },
-    ],
-  };
+  it('should return expected Class list (HttpClient called once)', () => {
+    const mockClassListResponse: ClassesResponse = {
+      classes: [
+        { name: 'class_1', students: ['A', 'B'] },
+        { name: 'class_2', students: ['C', 'D'] },
+        { name: 'class_3', students: ['E', 'F'] },
+      ],
+    };
 
-  httpClientSpy.get.and.returnValue(of(expectedResponse));
+    httpClientSpy.get.and.returnValue(of(mockClassListResponse));
 
-  dataService
-    .getClasses()
-    .then(
-      (classes) => expect(classes).toEqual(expectedResponse, 'expected heroes'),
-      fail
-    );
-  expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
-});
+    dataService
+      .getClasses()
+      .then((classes) =>
+        expect(classes).toEqual(mockClassListResponse, 'mock Class list')
+      )
+      .catch(() => fail('not expected an error'));
+    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+  });
 
-it('should return expected activities (HttpClient called once)', () => {
-  const expectedResponse: ActivityResponse = {
-    data: [
-      {
-        attempts: { weeks: ['1'], values: [80] },
-        content: 'content_!',
-        skill: 'skill_1',
-        student: 'student_1',
-        time: 'time_1',
-        type: 'type_1',
-      },
-    ],
-  };
+  it('should return expected Activity list (HttpClient called once)', () => {
+    const mockActivityResponse: ActivityResponse = {
+      data: [
+        {
+          attempts: { weeks: ['1'], values: [80] },
+          content: 'content_2',
+          skill: 'skill_1',
+          student: 'student_1',
+          time: 'time_1',
+          type: 'type_1',
+        },
+        {
+          attempts: { weeks: ['1'], values: [50] },
+          content: 'content_2',
+          skill: 'skill_2',
+          student: 'student_2',
+          time: 'time_2',
+          type: 'type_2',
+        },
+      ],
+    };
 
-  httpClientSpy.get.and.returnValue(of(expectedResponse));
+    httpClientSpy.get.and.returnValue(of(mockActivityResponse));
 
-  dataService
-    .getActivities()
-    .then(
-      (activities) =>
-        expect(activities).toEqual(expectedResponse, 'expected heroes'),
-      fail
-    );
-  expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
-});
+    dataService
+      .getActivities()
+      .then((activities) =>
+        expect(activities).toEqual(mockActivityResponse, 'mock Activity list')
+      )
+      .catch(() => fail('not expected an error'));
+    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+  });
 
-it('should return an error when the server returns a 404', () => {
-  httpClientSpy.get.and.throwError('test 404 error');
+  it('should return empty class list when connection to server fails', () => {
+    const mockErrorMsg = 'could not process request';
+    httpClientSpy.get.and.throwError(mockErrorMsg);
 
-  dataService
-    .getClasses()
-    .then((classes) => fail('expected an error, not heroes'))
-    .catch((error) => expect(error.message).toContain('test 404 error'));
-});
+    dataService
+      .getClasses()
+      .then((classes) => {
+        expect(classes).toEqual({ classes: [] }, 'expected empty data');
+      })
+      .catch((err) => {
+        expect(err.message).toEqual(mockErrorMsg);
+      });
 
-it('should return an error when the server returns a 404', () => {
-  httpClientSpy.get.and.throwError('test 404 error');
+    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+  });
 
-  dataService
-    .getActivities()
-    .then((classes) => fail('expected an error, not heroes'))
-    .catch((error) => expect(error.message).toContain('test 404 error'));
+  it('should return empty activity list when connection to server fails', () => {
+    const mockErrorMsg = 'could not process request';
+    httpClientSpy.get.and.throwError(mockErrorMsg);
+
+    dataService
+      .getActivities()
+      .then((activities) =>
+        expect(activities).toEqual({ data: [] }, 'expected empty data')
+      )
+      .catch((err) => {
+        expect(err.message).toEqual(mockErrorMsg);
+      });
+
+    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+  });
 });
