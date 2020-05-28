@@ -15,9 +15,9 @@ describe('DataService', () => {
   it('should return expected Class list (HttpClient called once)', () => {
     const mockClassListResponse: ClassesResponse = {
       classes: [
-        { name: 'class_1', students: ['A', 'B'] },
-        { name: 'class_2', students: ['C', 'D'] },
-        { name: 'class_3', students: ['E', 'F'] },
+        { name: 'class_1', students: ['student_1', 'student_2'] },
+        { name: 'class_2', students: ['student_3', 'student_4'] },
+        { name: 'class_3', students: ['student_5', 'student_6'] },
       ],
     };
 

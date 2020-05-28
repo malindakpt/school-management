@@ -1,7 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { FilterComponent } from './filter.component';
-import { ActivityResponse } from 'src/app/interfaces/activity-response';
-import { ClassesResponse } from 'src/app/interfaces/classes-response';
 import { Activity } from 'src/app/interfaces/Activity';
 import { Class } from 'src/app/interfaces/class';
 import { DataStore } from 'src/app/services/data-store.service';
@@ -26,6 +24,7 @@ describe('FilterComponent', () => {
   let comp: FilterComponent;
   let dataStore: DataStore;
   let mockDataStore: MockDataStore;
+  const mockDate = '01/01/2020';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,66 +42,72 @@ describe('FilterComponent', () => {
     expect(comp).toBeTruthy();
   });
 
-  it('should generatecdefault Class array', () => {
+  it('should generate the default Class array', () => {
     const arr = [undefined, ...mockDataStore.classes.map((cls) => cls.name)];
     expect(comp.viewClasses).toEqual(arr);
   });
 
-  it('should generate default Student array as empty', () => {
-    const arr = [undefined, 'class_1'];
+  it('should generate the default Student array as empty', () => {
     expect(comp.viewStudents).toEqual(undefined);
   });
 
-  it('handle class change and generate students list', () => {
+  it('should handle class change to generate students list and emit an event', () => {
     spyOn(comp.filterChange, 'emit');
-    comp.handleClassChange({ value: 'class_1' });
+    comp.handleClassChange({ value: mockDataStore.getClasses()[0].name });
 
-    expect(comp.selectedClass).toEqual('class_1');
-    expect(comp.viewStudents).toEqual([undefined, 'student_1']);
+    expect(comp.selectedClass).toEqual(mockDataStore.getClasses()[0].name);
+    expect(comp.viewStudents).toEqual([
+      undefined,
+      mockDataStore.getClasses()[0].students[0],
+    ]);
     expect(comp.filterChange.emit).toHaveBeenCalledWith({
-      class: 'class_1',
+      class: mockDataStore.getClasses()[0].name,
       student: undefined,
       fromDate: undefined,
       toDate: undefined,
     });
   });
 
-  it('handle student change', () => {
+  it('should handle student change to set the status and emit an event', () => {
     spyOn(comp.filterChange, 'emit');
-    comp.handleStudentChange({ value: 'student_1' });
+    comp.handleStudentChange({
+      value: mockDataStore.getClasses()[0].students[0],
+    });
 
-    expect(comp.selectedStudent).toEqual('student_1');
+    expect(comp.selectedStudent).toEqual(
+      mockDataStore.getClasses()[0].students[0]
+    );
     expect(comp.filterChange.emit).toHaveBeenCalledWith({
       class: undefined,
-      student: 'student_1',
+      student: mockDataStore.getClasses()[0].students[0],
       fromDate: undefined,
       toDate: undefined,
     });
   });
 
-  it('handle start date change', () => {
+  it('should handle start date change to set the status and emit an event', () => {
     spyOn(comp.filterChange, 'emit');
-    comp.handleStartDateChange({ target: { value: '01/01/2020' } });
+    comp.handleStartDateChange({ target: { value: mockDate } });
 
-    expect(comp.selectedStartDate).toEqual('01/01/2020');
+    expect(comp.selectedStartDate).toEqual(mockDate);
     expect(comp.filterChange.emit).toHaveBeenCalledWith({
       class: undefined,
       student: undefined,
-      fromDate: '01/01/2020',
+      fromDate: mockDate,
       toDate: undefined,
     });
   });
 
-  it('handle end date change', () => {
+  it('should handle end date change to set the status and emit an event', () => {
     spyOn(comp.filterChange, 'emit');
-    comp.handleEndDateChange({ target: { value: '01/01/2020' } });
+    comp.handleEndDateChange({ target: { value: mockDate } });
 
-    expect(comp.selectedEndDate).toEqual('01/01/2020');
+    expect(comp.selectedEndDate).toEqual(mockDate);
     expect(comp.filterChange.emit).toHaveBeenCalledWith({
       class: undefined,
       student: undefined,
       fromDate: undefined,
-      toDate: '01/01/2020',
+      toDate: mockDate,
     });
   });
 });
