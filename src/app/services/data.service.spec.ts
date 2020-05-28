@@ -1,7 +1,7 @@
 import { DataService } from './data.service';
 import { ClassesResponse } from '../interfaces/classes-response';
 import { ActivityResponse } from '../interfaces/activity-response';
-import { of } from 'rxjs/internal/observable/of';
+import { of } from 'rxjs';
 
 let httpClientSpy: { get: jasmine.Spy };
 let dataService: DataService;
@@ -66,7 +66,7 @@ describe('DataService', () => {
   });
 
   it('should return empty class list when connection to server fails', () => {
-    const mockErrorMsg = 'could not process request';
+    const mockErrorMsg = 'could not process the request';
     httpClientSpy.get.and.throwError(mockErrorMsg);
 
     dataService
@@ -82,7 +82,7 @@ describe('DataService', () => {
   });
 
   it('should return empty activity list when connection to server fails', () => {
-    const mockErrorMsg = 'could not process request';
+    const mockErrorMsg = 'could not process the request';
     httpClientSpy.get.and.throwError(mockErrorMsg);
 
     dataService
