@@ -36,7 +36,7 @@ describe('DataService', () => {
     const mockActivityResponse: ActivityResponse = {
       data: [
         {
-          attempts: { weeks: ['1'], values: [80] },
+          attempts: { weeks: ['01/01/2020'], values: [80] },
           content: 'content_2',
           skill: 'skill_1',
           student: 'student_1',
@@ -44,7 +44,7 @@ describe('DataService', () => {
           type: 'type_1',
         },
         {
-          attempts: { weeks: ['1'], values: [50] },
+          attempts: { weeks: ['01/01/2020'], values: [50] },
           content: 'content_2',
           skill: 'skill_2',
           student: 'student_2',

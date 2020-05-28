@@ -48,14 +48,14 @@ describe('FilterComponent', () => {
   });
 
   it('should generate the default Student array as empty', () => {
-    expect(comp.viewStudents).toEqual(undefined);
+    expect(comp.viewStudents).toBe(undefined);
   });
 
   it('should handle class change to generate students list and emit an event', () => {
     spyOn(comp.filterChange, 'emit');
     comp.handleClassChange({ value: mockDataStore.getClasses()[0].name });
 
-    expect(comp.selectedClass).toEqual(mockDataStore.getClasses()[0].name);
+    expect(comp.selectedClass).toBe(mockDataStore.getClasses()[0].name);
     expect(comp.viewStudents).toEqual([
       undefined,
       mockDataStore.getClasses()[0].students[0],
@@ -74,7 +74,7 @@ describe('FilterComponent', () => {
       value: mockDataStore.getClasses()[0].students[0],
     });
 
-    expect(comp.selectedStudent).toEqual(
+    expect(comp.selectedStudent).toBe(
       mockDataStore.getClasses()[0].students[0]
     );
     expect(comp.filterChange.emit).toHaveBeenCalledWith({
@@ -89,7 +89,7 @@ describe('FilterComponent', () => {
     spyOn(comp.filterChange, 'emit');
     comp.handleStartDateChange({ target: { value: mockDate } });
 
-    expect(comp.selectedStartDate).toEqual(mockDate);
+    expect(comp.selectedStartDate).toBe(mockDate);
     expect(comp.filterChange.emit).toHaveBeenCalledWith({
       class: undefined,
       student: undefined,
@@ -102,7 +102,7 @@ describe('FilterComponent', () => {
     spyOn(comp.filterChange, 'emit');
     comp.handleEndDateChange({ target: { value: mockDate } });
 
-    expect(comp.selectedEndDate).toEqual(mockDate);
+    expect(comp.selectedEndDate).toBe(mockDate);
     expect(comp.filterChange.emit).toHaveBeenCalledWith({
       class: undefined,
       student: undefined,
